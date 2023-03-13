@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+body {
+    margin: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #c8d0d2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1650px;
+    padding: 1rem 1.5rem;
+    margin-inline: auto;
+    /* align-items: center; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px 2px rgba(0 0 0 / 0.3);
+    background-color: white;
+    min-height: 200px;
+    cursor: pointer;
+    transition: 150ms;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card:hover {
+    --translate-y: -2px;
+    box-shadow: 0 0 5px 2px rgba(0 0 0 / 0.5);
 }
 
-.App-link {
-  color: #61dafb;
+.card.flip {
+    --rotate-y: 0.5turn;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card .front,
+.card .back {
+    position: absolute;
+    inset: 0;
+    padding: 1rem;
+    backface-visibility: hidden;
+}
+
+/* .card .front {
+    left: 0;
+} */
+
+.card .back {
+    display: grid;
+    place-content: center;
+    font-size: 1.25rem;
+    text-align: center;
+    transform: rotateY(180deg);
+}
+
+.flashcard-options {
+    color: #555;
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+}
+
+.flashcard-option:not(:first-child) {
+    margin-top: 0.25rem;
+}
+
+.header {
+    max-width: max-content;
+    margin-inline: auto;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    display: grid;
+    align-items: end;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 5px 2px rgba(0 0 0 / 0.3);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group > label {
+    color: #777;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.form-group > select,
+.form-group > input {
+    min-width: 15ch;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.2;
+    border-radius: 0.25rem;
+    border: 1px solid #777;
+    background-color: white;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+.btn {
+    background-color: hsl(200, 100%, 50%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: hsl(200, 100%, 40%);;
 }
